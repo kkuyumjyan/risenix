@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Risenix — Order from chaos. Growth from precision.</title>
+    <meta name="description" content="Risenix is an engineering partner focused on reliability, DevOps/SRE, cloud scalability, and thoughtful software development. Order from chaos. Growth from precision." />
+    <meta name="theme-color" content="#0b1020" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content="Risenix — Order from chaos. Growth from precision." />
+    <meta property="og:description" content="Reliability-first engineering. DevOps/SRE • Cloud • Software Development." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://risenix.io/" />
+    <meta property="og:image" content="https://risenix.io/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E" />
+
+    <style>
+        :root {
+            --bg: #0b1020;
+            --bg-2: #121932;
+            --text: #e8ecf8;
+            --muted: #b9c1d9;
+            --accent: #ff7a45; /* ember */
+            --accent-2: #ffd8c7;
+            --card: #131a34;
+            --ok: #3ddc84;
+            --warn: #ffb020;
+        }
+        * { box-sizing: border-box; }
+        html, body { margin:0; height:100%; }
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            color: var(--text);
+            background: radial-gradient(1200px 600px at 80% -10%, rgba(255,122,69,0.18), rgba(255,122,69,0) 60%),
+            radial-gradient(900px 500px at -10% -20%, rgba(54,88,226,0.18), rgba(54,88,226,0) 55%),
+            linear-gradient(180deg, var(--bg), var(--bg-2));
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Layout */
+        .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+        header { position: sticky; top: 0; z-index: 20; backdrop-filter: saturate(120%) blur(8px); background: rgba(11,16,32,0.6); border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .nav { display:flex; align-items:center; justify-content:space-between; padding: 14px 0; }
+        .brand { display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:0.2px; }
+        .logo { width:34px; height:34px; border-radius:10px; background: conic-gradient(from 210deg, #ffb680, #ff7a45 40%, #ff3d2e 70%, #ffb680); box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 8px 28px rgba(255,122,69,0.35); position: relative; }
+        .logo:before { content:""; position:absolute; inset:4px; border-radius:8px; background: radial-gradient(60% 60% at 40% 35%, rgba(255,255,255,0.55), rgba(255,255,255,0) 60%); opacity:.7; }
+        .brand span { font-size: 18px; }
+        .menu { display:flex; gap:20px; align-items:center; }
+        .menu a { color: var(--muted); font-weight:500; }
+        .cta { display:inline-block; background: var(--accent); color:#1a0f0a; font-weight:700; padding:10px 14px; border-radius:12px; box-shadow: 0 8px 24px rgba(255,122,69,0.35); }
+        .cta:hover{ text-decoration:none; filter: brightness(1.05); }
+
+        /* Hero */
+        .hero { padding: 80px 0 40px; text-align:center; }
+        .eyebrow { color: var(--accent-2); font-weight:600; letter-spacing: .08em; text-transform: uppercase; font-size:12px; }
+        h1 { font-size: clamp(32px, 5vw, 56px); margin: 12px 0 14px; line-height: 1.1; }
+        .sub { max-width: 820px; margin: 0 auto 22px; color: var(--muted); font-size: 18px; }
+        .badges { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin: 10px 0 28px; }
+        .badge { border:1px solid rgba(255,255,255,0.12); color: var(--muted); padding:8px 12px; border-radius:999px; font-size:14px; background: rgba(255,255,255,0.04); }
+
+        .hero-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top: 10px; }
+        .btn-outline { border:1px solid rgba(255,255,255,0.18); padding:10px 14px; border-radius:12px; color: var(--text); }
+        .btn-outline:hover { background: rgba(255,255,255,0.06); text-decoration:none; }
+
+        /* Cards */
+        .section { padding: 60px 0; }
+        .section h2 { text-align:center; font-size: clamp(24px, 3vw, 36px); margin: 0 0 8px; }
+        .section .lead { text-align:center; color: var(--muted); margin: 0 auto 34px; max-width: 760px; }
+
+        .grid { display:grid; gap:16px; grid-template-columns: repeat(12, 1fr); }
+        .card { grid-column: span 12; background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015)); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 18px; }
+        @media (min-width: 720px) { .card { grid-column: span 4; } }
+        .card h3 { margin: 4px 0 6px; font-size: 20px; }
+        .card p { color: var(--muted); margin: 0; }
+        .card .icon { width:36px; height:36px; border-radius:10px; display:grid; place-items:center; background:#101735; margin-bottom:10px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06); }
+
+        /* Process */
+        .process { display:grid; gap:12px; grid-template-columns: repeat(4, 1fr); margin-top: 18px; }
+        .step { background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); padding:14px; border-radius:12px; text-align:center; }
+        .step b { display:block; font-size:14px; margin-bottom:6px; color: var(--accent-2); letter-spacing:.06em; }
+
+        /* Values */
+        .values { display:grid; gap:16px; grid-template-columns: repeat(12, 1fr); margin-top:10px; }
+        .value { grid-column: span 12; border-left: 3px solid var(--accent); padding: 10px 12px; background: rgba(255,122,69,0.04); border-radius: 10px; }
+        @media (min-width: 720px) { .value { grid-column: span 6; } }
+
+        /* Contact */
+        .contact { text-align:center; }
+        .contact .mail { display:inline-flex; align-items:center; gap:10px; padding: 12px 16px; border-radius: 14px; background: var(--card); border:1px solid rgba(255,255,255,0.08); font-weight:700; }
+        .contact small { display:block; color: var(--muted); margin-top:10px; }
+
+        footer { padding: 30px 0 60px; color: var(--muted); text-align:center; border-top:1px solid rgba(255,255,255,0.06); margin-top:40px; }
+
+        /* Utility */
+        .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="wrap nav">
+        <a class="brand" href="#top">
+            <span class="logo" aria-hidden="true"></span>
+            <span>Risenix</span>
+        </a>
+        <nav class="menu" aria-label="Primary">
+            <a href="#services">Services</a>
+            <a href="#approach">Approach</a>
+            <a href="#principles">Principles</a>
+            <a class="cta" href="#contact">Work with us</a>
+        </nav>
+    </div>
+</header>
+
+<main id="top">
+    <section class="hero wrap">
+        <div class="eyebrow">DevOps • SRE • Cloud • Software Engineering</div>
+        <h1>Order from chaos. <br/>Growth from precision.</h1>
+        <p class="sub">Risenix is a reliability‑first engineering partner. We stabilize critical systems, automate delivery, and build software that scales—so your business can move with confidence.</p>
+        <div class="badges">
+            <span class="badge">High availability</span>
+            <span class="badge">Cloud architecture</span>
+            <span class="badge">CI/CD & IaC</span>
+            <span class="badge">Observability</span>
+        </div>
+        <div class="hero-actions">
+            <a class="cta" href="#contact">Start a project</a>
+            <a class="btn-outline" href="#services">Explore services</a>
+        </div>
+    </section>
+
+    <section id="services" class="section wrap">
+        <h2>What we do</h2>
+        <p class="lead">Pragmatic engineering, battle‑tested operations, and clean delivery—tailored to where you are today and where you need to go next.</p>
+        <div class="grid">
+            <article class="card">
+                <div class="icon" aria-hidden="true">🛡️</div>
+                <h3>DevOps & SRE</h3>
+                <p>Incident‑resistant systems, automated deployments, cost‑aware reliability. We design SLIs/SLOs, harden pipelines, and reduce toil.</p>
+            </article>
+            <article class="card">
+                <div class="icon" aria-hidden="true">☁️</div>
+                <h3>Cloud & Scale</h3>
+                <p>Secure, scalable architecture on AWS/GCP/Azure. Kubernetes, autoscaling, networking, and data platforms built for growth.</p>
+            </article>
+            <article class="card">
+                <div class="icon" aria-hidden="true">🧩</div>
+                <h3>Software Engineering</h3>
+                <p>Services and platforms that are simple to operate. From APIs to internal tools—measured, maintainable, and well‑observed.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="approach" class="section wrap">
+        <h2>How we work</h2>
+        <p class="lead">Calm, disciplined execution. We cut through noise, focus on outcomes, and leave teams stronger than we found them.</p>
+        <div class="process">
+            <div class="step"><b>01 • Assess</b>Map risks, metrics, and constraints. Align on goals & success measures.</div>
+            <div class="step"><b>02 • Stabilize</b>Close reliability gaps, automate the critical path, remove toil.</div>
+            <div class="step"><b>03 • Scale</b>Design for growth: architecture, performance, cost, and security.</div>
+            <div class="step"><b>04 • Evolve</b>Enable teams: docs, runbooks, dashboards, and continuous improvement.</div>
+        </div>
+    </section>
+
+    <section id="principles" class="section wrap">
+        <h2>Principles we stand by</h2>
+        <p class="lead">Perfection as a practice—not an accident. Reliability, clarity, and disciplined improvement are the heart of our craft.</p>
+        <div class="values">
+            <div class="value"><strong>Reliability first.</strong> Uptime is a product feature. We engineer for failure and recovery.</div>
+            <div class="value"><strong>Clarity over complexity.</strong> Simple beats clever. We design for operability.</div>
+            <div class="value"><strong>Measured growth.</strong> We scale with data: SLIs, error budgets, and cost signals.</div>
+            <div class="value"><strong>Discipline & ownership.</strong> We document, automate, and leave a clean trail.</div>
+        </div>
+    </section>
+
+    <section id="contact" class="section wrap contact">
+        <h2>Let’s talk</h2>
+        <p class="lead">Tell us where things hurt—or where you want to go next. We’ll bring calm, clarity, and momentum.</p>
+        <a class="mail" href="mailto:hello@risenix.io" aria-label="Email hello at risenix dot io">
+            ✉️ hello@risenix.io
+        </a>
+        <small>Prefer Telegram/WhatsApp? Add a note in your email and we’ll follow up.</small>
+    </section>
+</main>
+
+<footer>
+    <div class="wrap">© <span id="y"></span> Risenix. All rights reserved.</div>
+</footer>
+
+<script>
+    // Set current year
+    document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
