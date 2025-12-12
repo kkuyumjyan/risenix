@@ -206,11 +206,18 @@
         .eyebrow { color: var(--accent); font-weight:600; letter-spacing: .08em; text-transform: uppercase; font-size:12px; }
         h1 { font-size: clamp(32px, 5vw, 56px); margin: 12px 0 14px; line-height: 1.1; }
         .sub { max-width: 900px; margin: 0 auto 14px; color: var(--muted); font-size: 18px; }
-        .tagline { max-width: 820px; margin: 0 auto 22px; color: var(--text); font-size: 16px; font-weight: 600; letter-spacing: .01em; opacity: .85; }
+        .tagline { max-width: 820px; margin: 0 auto 10px; color: var(--text); font-size: 16px; font-weight: 600; letter-spacing: .01em; opacity: .85; }
+        .value-line { max-width: 920px; margin: 0 auto 22px; color: var(--muted); font-size: 16px; }
         .badges { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin: 10px 0 28px; }
         .badge { border:1px solid rgba(37,99,235,0.3); color: var(--accent); padding:8px 12px; border-radius:999px; font-size:14px; background: rgba(37,99,235,0.1); font-weight:500; }
 
-        .hero-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top: 10px; }
+        .hero-actions { display:grid; grid-template-columns: auto auto; gap:12px; justify-content:center; align-items:start; margin-top: 10px; }
+        .cta-proof { grid-column: 1; justify-self:center; font-size: 13px; color: var(--muted); font-weight: 600; }
+        @media (max-width: 640px) {
+            .hero-actions { grid-template-columns: 1fr; }
+            .hero-actions > a { justify-self: stretch; text-align:center; }
+            .cta-proof { grid-column: 1; }
+        }
         .btn-outline { border:1px solid rgba(0,0,0,0.18); padding:10px 14px; border-radius:12px; color: var(--text); }
         .btn-outline:hover { background: rgba(0,0,0,0.04); text-decoration:none; }
 
@@ -248,6 +255,7 @@
 
         /* Contact */
         .contact { text-align:center; }
+        .contact-actions { display:flex; flex-direction:column; align-items:center; gap:10px; margin-top: 8px; }
         .contact .mail { display:inline-flex; align-items:center; gap:10px; padding: 12px 16px; border-radius: 14px; background: var(--bg-2); border:1px solid rgba(0,0,0,0.08); font-weight:700; }
         .contact small { display:block; color: var(--muted); margin-top:10px; }
 
@@ -284,6 +292,7 @@
         <h1>Compliance-Driven SRE &amp; DevOps for Healthcare &amp; Fintech</h1>
         <p class="sub">We identify and fix your reliability &amp; compliance gaps in 2–4 weeks — then operate your infrastructure with monthly SLAs that withstand audits.</p>
         <p class="tagline">Order from chaos. Growth from precision.</p>
+        <p class="value-line">We help healthcare and fintech teams reduce incidents, pass audits, and scale their cloud infrastructure without hiring full-time SREs.</p>
         <div class="badges">
             <span class="badge">HIPAA Ready</span>
             <span class="badge">PCI-DSS</span>
@@ -293,8 +302,9 @@
             <span class="badge">High availability</span>
         </div>
         <div class="hero-actions">
-            <a class="cta" href="#contact">Start a project</a>
+            <a class="cta" href="https://calendly.com/karapet-kuyumjyan/30min" target="_blank" rel="noopener">Book a 20-minute consultation</a>
             <a class="btn-outline" href="#services">Explore services</a>
+            <div class="cta-proof">10+ years building secure, compliant, audit-ready infrastructure.</div>
         </div>
     </section>
 
@@ -425,9 +435,12 @@
     <section id="contact" class="section wrap contact">
         <h2>Let's talk</h2>
         <p class="lead">Tell us where things hurt—or where you want to go next. We'll bring calm, clarity, and momentum.</p>
-        <a class="mail" href="mailto:hello@risenix.io" aria-label="Email hello at risenix dot io">
-            ✉️ hello@risenix.io
-        </a>
+        <div class="contact-actions">
+            <a class="cta" href="https://calendly.com/karapet-kuyumjyan/30min" target="_blank" rel="noopener">Book a 20-minute consultation</a>
+            <a class="mail" href="mailto:hello@risenix.io" aria-label="Email hello at risenix dot io">
+                ✉️ hello@risenix.io
+            </a>
+        </div>
         <small>Prefer Telegram/WhatsApp? Add a note in your email and we'll follow up.</small>
     </section>
 </main>
